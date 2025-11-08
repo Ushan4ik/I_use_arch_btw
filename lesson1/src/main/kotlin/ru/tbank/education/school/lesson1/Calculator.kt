@@ -1,18 +1,38 @@
 package ru.tbank.education.school.lesson1
 
-/**
- * Метод для вычисления простых арифметических операций.
- */
-fun calculate(a: Double, b: Double, operation: OperationType): Double? {
-    TODO()
+enum class Operation(val symbols: List<String>, val operationfun: (Double, Double) -> Double) {
+    MULT(listOf("*", "multiply"), { a, b -> a * b }),
+    PLUS(listOf("+", "plus"), { a, b -> a + b }),
+    MINUS(listOf("-", "minus"), { a, b -> a - b }),
+    DIVIDE(listOf("/", "d", "divide"), { a, b -> a / b });
+
+    companion object {
+        fun from(symbol: String): Operation? {
+            return entries.find { it.symbols.contains(symbol) }
+        }
+    }
 }
 
-/**
- * Функция вычисления выражения, представленного строкой
- * @return результат вычисления строки или null, если вычисление невозможно
- * @sample "5 * 2".calculate()
- */
-@Suppress("ReturnCount")
 fun String.calculate(): Double? {
-    TODO()
+    val parts = this.split(" ")
+    if (parts.size != 3) {
+        return null
+    }
+
+    val a = parts[0].toDoubleOrNull() ?: return null
+    val operationSymbol = parts[1]
+    val b = parts[2].toDoubleOrNull() ?: return null
+
+    val operation = Operation.from(operationSymbol) ?: return null
+
+    return operation.operationfun(a, b)
 }
+
+fun main() {
+    val s = "2 + 3"
+    println(s.calculate())
+    val z = readln()
+    println(z.calculate())
+
+}
+
