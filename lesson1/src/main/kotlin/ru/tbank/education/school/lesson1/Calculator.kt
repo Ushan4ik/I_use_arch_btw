@@ -85,7 +85,7 @@ fun main() {
         println("-------------------------")
         println("to quit write  'q' ")
         println("-------------------------")
-        println("Напишите ваше Выражение строго разделяя пробелами:")
+        println("Напишите ваше Выражение строго  разделяя пробелами:")
         val z = readln()
         if(z=="q")break;
         val result   = z.calculate()
