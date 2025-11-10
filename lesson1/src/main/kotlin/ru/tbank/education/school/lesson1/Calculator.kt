@@ -14,6 +14,7 @@ enum class Operation3val(val symbols: List<String>, val operationfun: (Double, D
         }
     }
 }
+
 enum class Operation2val(val symbols: List<String>, val operationfun: (Double) -> Double?) {
     SIN(listOf("SIN","sin","Sin","S","s"), { a-> sin(Math.toRadians(a))  }),
     COS(listOf("COS","cos","Cos","C","c"), { a-> cos(Math.toRadians(a))  }),
@@ -53,43 +54,46 @@ fun String.calculate(): Double? {
 
 fun main() {
     val expressionsToTest = listOf(
-        // Бинарные операции
         "2 + 3",
         "5 * 2",
         "10 / 2",
         "7 - 4",
-        "10 / 0",        // Деление на ноль
-        "5 plus 5",      // Альтернативный символ
-        "invalid input", // Неверный формат
-
-        // Унарные операции
-        "sin 30",        // Синус 30 градусов
-        "cos 60",        // Косинус 60 градусов
-        "sqrt 9",        // Корень из 9
-        "sqrt 2",        // Корень из 2
-        "sqrt -4",       // Корень из отрицательного числа
-        "SIN 90",        // Нечувствительность к регистру
-        "sin invalid",   // Неверное число
-        "hello 10",      // Неизвестная унарная операция
-        "100"  ,
-        "100 20"// Одиночное число (не поддерживается текущим парсером)
+        "10 / 0",
+        "5 plus 5",
+        "fasdx input",
+        "sin 30",
+        "cos 60",
+        "sqrt 9",
+        "sqrt 2",
+        "sqrt -4",
+        "SIN 90",
+        "sin invalid",
+        "hello 10",
+        "100",
+        "100 20"
     )
     for (expr in expressionsToTest) {
         val result = expr.calculate()
 
-        // Используем оператор Элвиса (?:) для предоставления значения по умолчанию, если result == null
-        // А затем используем 'let' для выполнения действия над результатом, если он не null
         result?.let {
-            // Если result не null, выводим его
-            println("|z$expr =  $it")
-        } ?: run {
-            // Если result был null, выводим сообщение об ошибке
+            println("|$expr =  $it")
+        } ?: run{
             println("|$expr -> Error: ")
         }
     }
-    val z = readln()
-    println(z.calculate())
+    while (true) {
+        println("-------------------------")
+        println("to quit write  'q' ")
+        println("-------------------------")
+        println("Напишите ваше Выражение строго разделяя пробелами:")
+        val z = readln()
+        if(z=="q")break;
+        val result   = z.calculate()
+        result?.let {
+            println("$z =  $it")
+        } ?: run{
+            println("$z -> Error: ")
+        }
 
-
+    }
 }
-
