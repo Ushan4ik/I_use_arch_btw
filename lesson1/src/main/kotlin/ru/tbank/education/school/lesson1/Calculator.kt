@@ -81,7 +81,7 @@ fun main() {
         // А затем используем 'let' для выполнения действия над результатом, если он не null
         result?.let {
             // Если result не null, выводим его
-            println("|$expr =  $it")
+            println("|z$expr =  $it")
         } ?: run {
             // Если result был null, выводим сообщение об ошибке
             println("|$expr -> Error: ")
