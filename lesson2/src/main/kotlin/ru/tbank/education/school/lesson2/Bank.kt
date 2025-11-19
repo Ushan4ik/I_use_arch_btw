@@ -17,10 +17,12 @@ class Bank {
 
     }
 
-    fun addAccount(ClientId: String) {
+    fun addAccount(ClientId: String)
+    {
+
         val newAccount = Account(
             id ="A-${accountSeq++}",
-            balance =0.0,
+            balance = 0.0,
             customerID=ClientId
         )
         accounts.add(newAccount)
