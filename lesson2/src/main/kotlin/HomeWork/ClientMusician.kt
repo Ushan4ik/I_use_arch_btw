@@ -1,4 +1,4 @@
-package ru.tbank.education.school.lesson2
+package HomeWork
 
 class ClientMusician  (
         val id: String,

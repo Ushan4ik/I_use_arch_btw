@@ -1,6 +1,5 @@
 package ru.tbank.education.school.lesson2
 
-import com.sun.security.ntlm.Client
 
 class Bank {
     var clientCount: Int = 1

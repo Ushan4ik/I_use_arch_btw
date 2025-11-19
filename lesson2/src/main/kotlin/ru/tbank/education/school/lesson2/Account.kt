@@ -1,12 +1,16 @@
 package ru.tbank.education.school.lesson2
 
+import HomeWork.Song
+
 open class Account
     (
-            val id: String,
+    val id: String,
 
-            var balance: Double,
+    var balance: Double,
 
-            val customerID: String)   {
+    val customerID: String,
+    SongList: MutableList<Song>
+)   {
     fun deposit(amount: Double) {
         balance += amount
     }
@@ -29,7 +33,9 @@ open class Account
     ): Account(
         id,
         balance,
-        customerID
+        customerID,
+        SongList = mutableListOf<Song>()
+
     ){
         var creditLimit = creditLimit
 
@@ -41,4 +47,6 @@ open class Account
             return false
         }
     }
+
+    open fun addNewSong(song: Song) {}
 }
