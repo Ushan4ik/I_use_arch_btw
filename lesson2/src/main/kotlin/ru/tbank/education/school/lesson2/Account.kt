@@ -8,8 +8,7 @@ open class Account
 
     var balance: Double,
 
-    val customerID: String,
-    SongList: MutableList<Song>
+    val customerID: String
 )   {
     fun deposit(amount: Double) {
         balance += amount
@@ -33,8 +32,7 @@ open class Account
     ): Account(
         id,
         balance,
-        customerID,
-        SongList = mutableListOf<Song>()
+        customerID
 
     ){
         var creditLimit = creditLimit

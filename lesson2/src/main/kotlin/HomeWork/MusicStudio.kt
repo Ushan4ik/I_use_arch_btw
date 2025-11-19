@@ -3,13 +3,12 @@ package HomeWork
 import kotlin.String
 
 class MusicStudio {
-    var clientCount: Int = 1
+    private var clientCount: Int = 1
     var accountNumber: Int = 1
     public val customer: MutableList<ClientMusician> = mutableListOf()
     public val accounts: MutableList<MusicAccount> = mutableListOf()
 
     fun addClient(clientFullName: String) {
-        // Проверка, что такой артист уже есть
         val clientExists = customer.any { it.fullName == clientFullName }
         if (clientExists) {
             println("Артист '$clientFullName' уже существует")
@@ -22,7 +21,7 @@ class MusicStudio {
                 fullName = clientFullName
             )
         } catch (e: Exception) {
-            TODO("Not yet implemented")
+            TODO( )
         }
         customer.add(newClient)
         clientCount++
@@ -32,7 +31,6 @@ class MusicStudio {
         val clientExists = customer.any { it.id == ClientId }
 
         if (clientExists) {
-            // Проверка, что аккаунт с таким именем уже существует
             val accountExists = accounts.any { it.name == Name }
             if (accountExists) {
                 println("Аккаунт с именем '$Name' уже существует")
@@ -47,21 +45,19 @@ class MusicStudio {
                     customerID = ClientId
                 )
             } catch (e: Exception) {
-                TODO("Not yet implemented")
+                TODO( )
             }
             accounts.add(newAccount)
         }
     }
 
     fun createGroupAccount(groupName: String, memberAccountIDs: List<String>, creatorClientID: String) {
-        // Проверка, что группа с таким названием уже существует
+
         val groupExists = accounts.any { it.name == groupName }
         if (groupExists) {
             println("Группа с названием '$groupName' уже существует")
             return
         }
-
-        // Проверяем, что все аккаунты участников существуют
         val validMembers = memberAccountIDs.filter { accountID ->
             accounts.any { it.id == accountID }
         }
@@ -71,7 +67,6 @@ class MusicStudio {
             return
         }
 
-        // Создаем групповой аккаунт
         val newGroupAccount = try {
             GroupAccount(
                 id = "A-${accountNumber++}",
@@ -85,7 +80,6 @@ class MusicStudio {
             TODO("Not yet implemented")
         }
 
-        // Заполняем имена участников
         validMembers.forEach { accountID ->
             val account = accounts.find { it.id == accountID }
             account?.let {
@@ -97,16 +91,16 @@ class MusicStudio {
         println("Групповой аккаунт '$groupName' создан с ${validMembers.size} участниками")
     }
 
-    // Функция вывода информации по названию
+
     fun getInfoByName(name: String) {
         println("=== Информация по запросу: '$name' ===")
 
-        // Ищем исполнителя
+
         val artist = customer.find { it.fullName == name }
         if (artist != null) {
-            println("\n🎤 Исполнитель: ${artist.fullName} (ID: ${artist.id})")
+            println(" Исполнитель: ${artist.fullName} (ID: ${artist.id})")
 
-            // Находим аккаунты исполнителя
+
             val artistAccounts = accounts.filter { it.customerID == artist.id }
             if (artistAccounts.isNotEmpty()) {
                 println("Аккаунты исполнителя:")
@@ -116,7 +110,7 @@ class MusicStudio {
                 }
             }
 
-            // Находим группы, где участвует исполнитель
+
             val artistGroups = accounts.filterIsInstance<GroupAccount>()
                 .filter { group ->
                     group.groupAccountIDs.any { accountID ->
@@ -134,29 +128,14 @@ class MusicStudio {
                 println("Не участвует в группах")
             }
         }
-
-        // Ищем группу
-        val group = accounts.find { it.name == name && it is GroupAccount } as? GroupAccount
-        if (group != null) {
-            println("\n🎵 Группа: ${group.name} (ID: ${group.id})")
-            println("Баланс: ${group.balance}")
-            println("Участники (${group.groupMemberNames.size}):")
-            group.groupMemberNames.forEachIndexed { index, memberName ->
-                val accountID = group.groupAccountIDs.getOrNull(index)
-                println("  - $memberName (ID аккаунта: $accountID)")
-            }
-            println("Песни группы: ${group.SongList.size} шт")
-        }
-
-        // Если ничего не найдено
-        if (artist == null && group == null) {
+        else{
             println("Ничего не найдено по запросу '$name'")
         }
         println("=====================================")
     }
 
     fun CreateSong(AccountID: String, SongPrice: Double,
-                   Songgenre: String, SongName: String, DurSec: Int) {
+                   Songgenre: String, SongName: String, DurSec: Double,CreateRemix:Boolean) {
         val clientExists = accounts.any { it.id == AccountID }
         if (clientExists) {
             val account = accounts.find { it.id == AccountID}
@@ -172,9 +151,22 @@ class MusicStudio {
                     TODO("Not yet implemented")
                 }
                 account?.addNewSong(newSong)
+                if(CreateRemix) {
+                    CreateRemix(AccountID,newSong)
+                }
             } else {
                 println("Слишко мало золота, Милорд")
             }
+        }
+    }
+    fun CreateRemix(AccountID: String,song: Song) {
+        val clientExists = accounts.any { it.id == AccountID }
+        if (clientExists) {
+            val account = accounts.find { it.id == AccountID}
+            println("Записываем реп, нигга")
+
+            account?.addNewSong(song)
+
         }
     }
 }
