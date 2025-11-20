@@ -6,23 +6,23 @@ fun main() {
 
     val studio = MusicStudio()
 
-    println("\n1. СОЗДАНИЕ АРТИСТОВ:")
+    println("1. СОЗДАНИЕ АРТИСТОВ:")
     studio.addClient("Eminem")
     studio.addClient("Талант")
     studio.addClient("Моцарт")
 
-    println("\nПопытка создать дубликат артиста:")
+    println("Попытка создать дубликат артиста:")
     studio.addClient("Eminem")
 
-    println("\n2. СОЗДАНИЕ АККАУНТОВ:")
+    println("2. СОЗДАНИЕ АККАУНТОВ:")
     studio.addAccount("C-1", "Eminem Official")
     studio.addAccount("C-2", "Cерёга Пират")
     studio.addAccount("C-3", "ambientcore")
 
-    println("\nПопытка создать аккаунт с существующим именем:")
+    println("Попытка создать аккаунт с существующим именем:")
     studio.addAccount("C-1", "Eminem Official")
 
-    println("\n3. ПОПОЛНЕНИЕ БАЛАНСОВ:")
+    println("3. ПОПОЛНЕНИЕ БАЛАНСОВ:")
     val SeregaAc = studio.accounts.find { it.name == "Cерёга Пират"}
     val MochAc = studio.accounts.find { it.name == "ambientcore" }
     val EminemAc = studio.accounts.find { it.name == "Eminem Official" }
@@ -33,7 +33,7 @@ fun main() {
     println("Баланс Eminem: ${EminemAc?.balance}")
 
 
-    println("\n4. СОЗДАНИЕ ПЕСЕН:")
+    println("4. СОЗДАНИЕ ПЕСЕН:")
     studio.CreateSong("A-2", 1000.0, "Rap", "Lose Yourself", 326.0,
         CreateRemix = false)
     studio.CreateSong("A-1", 800.0, "Rap", "The Real Slim Shady", 284.0,
@@ -41,13 +41,13 @@ fun main() {
     studio.CreateSong("A-2", 1500.0, "Pop-Rock", "Почему ты ещё не фанат?", 304.0,
         CreateRemix = false)
 
-    println("\nПопытка создать песню без денег:")
+    println("Попытка создать песню без денег:")
     studio.CreateSong(
         "A-1", 50000.0, "Rap", "Gin and Juice", 210.0,
         CreateRemix = false
     )
 
-    println("\n5. СОЗДАНИЕ ГРУППЫ:")
+    println("5. СОЗДАНИЕ ГРУППЫ:")
     val eminemAccId = EminemAc?.id ?: "wtf"
     val SeregaAccId = SeregaAc?.id ?: "wtf"
     val mochAccId = MochAc?.id ?: "wtf"
@@ -58,16 +58,16 @@ fun main() {
         "C-2"
     )
 
-    println("\nПопытка создать группу с существующим именем:")
+    println("Попытка создать группу с существующим именем:")
     studio.createGroupAccount(
         "колектив DJ MONSTER 2007 ",
         listOf(SeregaAccId, mochAccId),
         "C-2"
     )
 
-    println("\n6. ПРОВЕРКА ИНФОРМАЦИИ:")
+    println("6. ПРОВЕРКА ИНФОРМАЦИИ:")
 
-    println("\nа) Информация об исполнителе:")
+    println("а) Информация об исполнителе:")
     studio.getInfoByName("Eminem")
 
 
@@ -76,20 +76,17 @@ fun main() {
     studio.getInfoByName("Моцарт")
 
 
-    println("\nв) Информация об участнике группы:")
-    studio.getInfoByName("Eminem")
-
-    println("\nг) Поиск несуществующего:")
+    println("в) Поиск несуществующего:")
     studio.getInfoByName("Non Existent Artist")
 
-    println("\n7. ФИНАЛЬНАЯ ПРОВЕРКА ДАННЫХ:")
+    println("7. ФИНАЛЬНАЯ ПРОВЕРКА ДАННЫХ:")
 
-    println("\nВсе клиенты:")
+    println("Все клиенты:")
     studio.customer.forEach { client ->
         println("- ${client.fullName} (ID: ${client.id})")
     }
 
-    println("\nВсе аккаунты:")
+    println("Все аккаунты:")
     studio.accounts.forEach { account ->
         when (account) {
             is GroupAccount -> {
@@ -106,8 +103,8 @@ fun main() {
         }
     }
 
-    println("\n" + "=" * 50)
-    println("🎵 Демонстрация завершена! 🎵")
+    println("=" * 50)
+    println("Всё!")
 }
 
 operator fun String.times(n: Int): String = repeat(n)
