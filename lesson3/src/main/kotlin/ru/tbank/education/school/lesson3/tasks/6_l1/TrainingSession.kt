@@ -1,9 +1,9 @@
 open class TrainingSession(
     val title: String,
-    val room: String
+    val adress: String
 ) {
     open fun start() {
-        println("Тренинг \"$title\" начался в комнате $room")
+        println("Тренинг \"$title\" начался в комнате $adress")
     }
 
     open fun finish() {
@@ -13,18 +13,11 @@ open class TrainingSession(
 
 class OnlineTrainingSession(
     title: String,
-    val url: String
-) : TrainingSession(title, room = "NO_ROOM") {
+    adress: String
+) : TrainingSession(title,adress ) {
 
     override fun start() {
-        // Онлайн-тренинг не может начаться "в комнате"
-        throw IllegalStateException(
-            "Онлайн-тренинг \"$title\" не может начаться в комнате $room. Используйте ссылку $url"
-        )
-    }
-
-    fun startOnline() {
-        println("Онлайн-тренинг \"$title\" начался по ссылке $url")
+            println("Тренинг \"$title\" начался по ссылке $adress")
     }
 }
 

@@ -1,5 +1,23 @@
-package ru.tbank.education.school.lesson2
-
 fun main() {
-    println("faculty day is the best course!")
+    // Исходный список продуктов
+    val products = listOf("Молоко", "Хлеб", "Сахар", "Сыр", "Масло", "Колбаса", "Сметана", "Яблоки")
+
+    // 1. Проверка наличия "Хлеб" в коллекции
+    println("1. Проверка наличия 'Хлеб':")
+    if ("Хлеб" in products) {
+        println("YES")
+    } else {
+        println("Хлеба нету в списке.")
+    }
+
+    // 2. Сортировка по алфавиту и вывод
+    println("\n2. Список продуктов, отсортированный по алфавиту:")
+    val productssorted = products.sorted() // Можно использовать .sorted() вместо .sortedBy { it } для строк
+    println(productssorted)
+
+    // 3. Вывод только продуктов, начинающихся на букву "С"
+    println("\n3. Продукты, начинающиеся на букву 'С':")
+    // Используем startsWith для более точной проверки начала строки, а не it[0] == 'С'
+    println(productssorted.filter { it.startsWith("С") })
 }
+
