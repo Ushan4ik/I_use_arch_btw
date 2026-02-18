@@ -40,6 +40,37 @@ object ExecutorServiceExample {
     }
 }
 
+object CreateThreads {
+    @Synchronized
+    fun run(): Int {
+        var count = 0
+        val lock = Any()
+        val threads = mutableListOf<Thread>()
+        var names = listOf<String>("Thread-A", "Thread-B", "Thread-C")
+        for (name in names)
+        {
+
+            threads.add(Thread {
+                println("Current thread: ${name}")
+                repeat(1000) {
+                    synchronized(lock){count++}
+                }
+            })
+
+
+        }
+
+
+
+        // Start all threads
+
+        threads.forEach { it.start() }
+        threads.forEach { it.join() }
+        return count
+    }
+}
+
+
 fun main() {
    val results = ExecutorServiceExample.runfact()
     results.forEach(::println)
