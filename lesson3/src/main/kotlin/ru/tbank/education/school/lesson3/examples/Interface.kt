@@ -1,3 +1,5 @@
+import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle
+
 interface Saveable {
     fun save()
 }
@@ -13,11 +15,11 @@ class UserSettings(
 }
 
 class MonthlyReport(
-    val title: String
-    val totalIncome: Long
-) Saveable {
+    val title: String,
+    val totalIncome: Long,
+) : Saveable {
     override fun save() {
-        println("Сохраняю отчёт \"$title\" с доходом $totalIncome")
+        println("Сохраняю отчёт \"${HtmlStyle.title}\" с доходом $totalIncome")
     }
 }
 
