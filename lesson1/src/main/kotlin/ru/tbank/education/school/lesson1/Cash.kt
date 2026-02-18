@@ -1,8 +1,5 @@
 package ru.tbank.education.school.lesson1
 
-import Book
-import Person
-
 /**
  * Простой интерфейс для in-memory кеша, хранящего данные в формате ключ-значение.
  */

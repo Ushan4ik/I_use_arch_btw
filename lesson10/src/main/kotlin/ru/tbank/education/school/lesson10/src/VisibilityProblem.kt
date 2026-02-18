@@ -1,3 +1,6 @@
+package ru.tbank.education.school.lesson10.src
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 /**
  *
  * Проблема:
@@ -8,8 +11,8 @@
  */
 class VisibilityProblem {
 
-    private var running = true
-
+    private val _running = MutableStateFlow(false)
+    val running = _running.asStateFlow()
     /**
      * Создает и возвращает поток writer.
      * Поток выполняет некоторую работу, затем меняет флаг running на false.
@@ -23,7 +26,7 @@ class VisibilityProblem {
                 Thread.yield()
             }
 
-            running = false
+            _running.value = false
             println("Writer: установил running = false (изменение может быть не видно)")
         }
     }
@@ -37,9 +40,10 @@ class VisibilityProblem {
         return Thread {
             println("Reader: начал работу (ждет running = false)")
 
-            while (running) {
-
+            while (running.value) {
+                Thread.sleep(1) // Небольшая задержка чтобы не нагружать процессор
             }
+
 
             println("Reader: завершил работу (увидел running = false)")
         }

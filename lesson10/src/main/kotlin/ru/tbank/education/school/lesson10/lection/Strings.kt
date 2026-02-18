@@ -1,3 +1,5 @@
+package ru.tbank.education.school.lesson10.lection
+
 fun stringLectureExample() {
     // 1. Создание строк
     val s1 = """Hello"""

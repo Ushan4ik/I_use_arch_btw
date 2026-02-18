@@ -1,4 +1,4 @@
-
+package ru.tbank.education.school.lesson1
 data class Book(
     val title: String,
     val author: String,
