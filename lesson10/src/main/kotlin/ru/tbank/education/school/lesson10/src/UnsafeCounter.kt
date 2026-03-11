@@ -1,10 +1,6 @@
-package ru.tbank.education.school.lesson10.src
-
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.locks.ReentrantLock
 
 /**
  *
@@ -26,7 +22,6 @@ class UnsafeCounter {
     private var value = 0
     private val mutex = Mutex()
 
-    // ВАРИАНТ 1: Использование Mutex (рекомендуется для корутин)
     suspend fun increment() {
         mutex.withLock {
             value++

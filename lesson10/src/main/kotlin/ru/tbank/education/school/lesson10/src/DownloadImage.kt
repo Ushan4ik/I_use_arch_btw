@@ -1,4 +1,6 @@
-package ru.tbank.education.school.lesson10.src
+package ru.tbank.education.school.lesson11
+
+
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers
 import java.io.File

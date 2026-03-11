@@ -1,8 +1,7 @@
-package ru.tbank.education.school.lesson10
+
 
 import java.util.concurrent.Executors
 import java.util.concurrent.Callable
-import java.util.concurrent.Future
 
 object ExecutorServiceExample {
     fun run(): List<String> {

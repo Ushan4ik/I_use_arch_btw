@@ -1,3 +1,5 @@
+package ru.tbank.education.school.lesson10.practise
+
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.DateTimeFormatter
@@ -31,13 +33,13 @@ fun task1() {
         name to score
     }
 
-    println("Task 1 pairs: $pairs")
+    println("Task 1 pairs - $pairs")
 
     val best = pairs.maxByOrNull { it.second }
     if (best != null) {
-        println("Task 1 best: ${best.first} (${best.second})")
+        println("Task 1 best - ${best.first} (${best.second})")
     } else {
-        println("Task 1: no valid lines")
+        println("Task 1   - no valid lines")
     }
 }
 
@@ -61,7 +63,7 @@ fun task2() {
     println("Task 2 sorted dates: ${dates.joinToString { it.format(fmt) }}")
 
     val countJan2026 = dates.count { it.year == 2026 && it.month == Month.JANUARY }
-    println("Task 2 count in Jan 2026: $countJan2026")
+    println("Task 2 amount of dates in Jan 2026: $countJan2026")
 }
 
 /*
@@ -81,10 +83,7 @@ fun task3() {
 
     println("Task 3 freq: $freq")
 
-    val repeated = freq
-        .filter { (_, c) -> c > 1 }
-        .keys
-        .sorted()
+    val repeated = freq.filter { (_, c) -> c > 1 }.keys.sorted()
 
     println("Task 3 repeated words: ${repeated.joinToString(", ")}")
 }

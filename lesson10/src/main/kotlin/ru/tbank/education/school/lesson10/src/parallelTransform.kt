@@ -1,5 +1,3 @@
-package ru.tbank.education.school.lesson10.src
-
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope

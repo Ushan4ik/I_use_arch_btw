@@ -1,4 +1,3 @@
-package ru.tbank.education.school.lesson10.src
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 /**

@@ -1,5 +1,3 @@
-package ru.tbank.education.school.lesson10.src
-
 class BankAccount(val id: String, var balance: Int) {
     fun transfer(to: BankAccount, amount: Int) {
         // Всегда блокируем счета в порядке возрастания ID
