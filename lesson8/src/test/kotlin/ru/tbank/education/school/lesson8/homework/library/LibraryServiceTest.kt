@@ -53,7 +53,7 @@ class LibraryServiceTest {
     @Test
     @DisplayName("Нельзя вернуть книгу, которая не была выдана")
     fun cannotReturnNotBorrowedBook() {
-        assertThrows(IllegalArgumentException::class.java) {
+         assertThrows(IllegalArgumentException::class.java) {
             library.returnBook("978-0-452-28423-4")
         }
     }

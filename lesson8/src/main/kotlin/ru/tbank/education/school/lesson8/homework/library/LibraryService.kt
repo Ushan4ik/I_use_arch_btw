@@ -10,13 +10,16 @@ class LibraryService {
     }
 
     fun borrowBook(isbn: String, borrower: String) {
-        if (borrowedBooks.contains(isbn)) {
-            return
+        if (borrowedBooks.contains(isbn) or !books.containsKey(isbn)) {
+            throw IllegalArgumentException("Книга не может быть взята")
         }
         borrowedBooks.add(isbn)
     }
 
     fun returnBook(isbn: String) {
+        if (!borrowedBooks.contains(isbn)) {
+            throw IllegalArgumentException("Книга не была выдана")
+        }
         borrowedBooks.remove(isbn)
     }
 
@@ -25,10 +28,10 @@ class LibraryService {
     }
 
     fun calculateOverdueFine(isbn: String, daysOverdue: Int): Int {
-        if (!borrowedBooks.contains(isbn)) {
+        if (!borrowedBooks.contains(isbn) or (daysOverdue <= 10)) {
             return 0
         }
-        return daysOverdue * 60
+        return (daysOverdue-10) * 60
     }
 
     private fun hasOutstandingFines(borrower: String): Boolean {
